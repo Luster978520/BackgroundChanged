@@ -8,8 +8,13 @@
         Title="ListViewShowTableFrm" Height="450" Width="800">
     <Grid>
         <StackPanel Height="200">
-            <TextBlock  Height="20" Text="{Binding ClassName }"></TextBlock>
-            <ListView  ItemsSource="{Binding StuList}">
+            <TextBlock   Foreground="Black" Height="20" Text="{Binding ClassName }"></TextBlock>
+            <ListView  ItemsSource="{Binding StuList}" x:Name="StuListView"
+          FontFamily="宋体"
+          FontWeight="Bold"
+          FontSize="12"
+          Foreground="Black"
+          Background="White">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Name }"/>

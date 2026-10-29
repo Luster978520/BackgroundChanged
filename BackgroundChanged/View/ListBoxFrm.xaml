@@ -1,0 +1,39 @@
+<Window x:Class="BackgroundChanged.View.ListBoxFrm" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Ruster 学生管理" Width="1080" Height="700" MinWidth="950" MinHeight="600" Background="#F3F6FA" WindowStartupLocation="CenterOwner">
+ <Window.Resources>
+  <Style TargetType="TextBlock"><Setter Property="Foreground" Value="#243247"/><Setter Property="VerticalAlignment" Value="Center"/></Style>
+  <Style TargetType="TextBox"><Setter Property="Margin" Value="5"/><Setter Property="Padding" Value="7"/></Style>
+  <Style TargetType="Button"><Setter Property="Margin" Value="5"/><Setter Property="Padding" Value="14,8"/></Style>
+ </Window.Resources>
+ <Grid Margin="24">
+ <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+ <StackPanel>
+ <TextBlock Text="学生信息管理" FontSize="28" FontWeight="Bold"/>
+ <TextBlock Text="Ruster · dbo.student" Margin="0,6,0,12"/>
+ <WrapPanel><TextBlock Text="服务器"/><TextBox x:Name="ServerBox" Text="." Width="120"/>
+ <CheckBox x:Name="WindowsAuth" Content="Windows 验证" VerticalAlignment="Center" Margin="8"/>
+ <TextBlock Text="账号"/><TextBox x:Name="UserBox" Text="sa" Width="90"/>
+ <TextBlock Text="密码"/><PasswordBox x:Name="PasswordBox" Width="120" Margin="5"/>
+ <Button Content="连接 / 刷新" Click="Connect_Click"/></WrapPanel>
+ </StackPanel>
+ <WrapPanel Grid.Row="1" Margin="0,12"><TextBlock Text="姓名包含"/><TextBox x:Name="SearchBox" Width="220"/><Button Content="查询" Click="Query_Click"/><TextBlock Text="留空查询全部；选中记录后可修改或删除。" Margin="12,0"/></WrapPanel>
+ <DataGrid Grid.Row="2" x:Name="StudentGrid" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" SelectionMode="Single" SelectionChanged="SelectionChanged" RowHeight="34" Background="White">
+ <DataGrid.Columns>
+ <DataGridTextColumn Header="StudentID 编号" Binding="{Binding StudentID}" Width="*"/>
+ <DataGridTextColumn Header="StudentName 姓名" Binding="{Binding StudentName}" Width="2*"/>
+ <DataGridTextColumn Header="Age 年龄" Binding="{Binding Age}" Width="*"/>
+ <DataGridTextColumn Header="Sex 编码" Binding="{Binding Sex}" Width="*"/>
+ <DataGridTextColumn Header="Birthday 生日" Binding="{Binding Birthday, StringFormat=yyyy-MM-dd}" Width="2*"/>
+ </DataGrid.Columns>
+ </DataGrid>
+ <StackPanel Grid.Row="3" Margin="0,16,0,8">
+ <WrapPanel><TextBlock Text="编号"/><TextBox x:Name="IdBox" Width="85"/>
+ <TextBlock Text="姓名"/><TextBox x:Name="NameBox" Width="150"/>
+ <TextBlock Text="年龄"/><TextBox x:Name="AgeBox" Width="70"/>
+ <TextBlock Text="Sex (0/1)"/><TextBox x:Name="SexBox" Width="55"/>
+ <TextBlock Text="生日"/><DatePicker x:Name="BirthdayBox" Width="145" Margin="5"/></WrapPanel>
+ <WrapPanel><Button Content="清空 / 新记录" Click="Clear_Click"/><Button Content="增添" Click="Add_Click"/><Button Content="保存修改" Click="Update_Click"/><Button Content="删除" Click="Delete_Click"/></WrapPanel>
+ <TextBlock x:Name="HintText" Text="请先填写登录信息并连接数据库。"/>
+ </StackPanel>
+ <TextBlock Grid.Row="4" x:Name="StatusText" Text="尚未连接" TextWrapping="Wrap"/>
+ </Grid>
+</Window>

@@ -64,6 +64,29 @@ namespace BackgroundChanged.View
                 listViewShowTableFrm.Activate();
             }
         }
+
+        private ListBoxFrm listBoxFrm;
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+            if (listBoxFrm==null)
+            {
+                listBoxFrm = new ListBoxFrm() { Owner = this };
+                listBoxFrm.Closed += (s, args) =>
+                {
+                    listBoxFrm = null;
+                };
+                    listBoxFrm.Show();
+            }
+            else
+            {
+                if(listBoxFrm.WindowState==WindowState.Minimized) listBoxFrm.WindowState = WindowState.Normal;
+                listBoxFrm.Activate();
+            }
+        }
+
+      
+        private void Students_Click(object sender, RoutedEventArgs e) { new BackgroundChanged.View.ListBoxFrm { Owner = this }.Show(); }
     }
 
 

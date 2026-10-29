@@ -17,7 +17,9 @@
                 <model:StuInfo Age="18" Name="张三" Description="1231"></model:StuInfo>
             </model:ClassStuInfo.StuList>
         </model:ClassStuInfo>-->
-       
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
     </Window.Resources>
 
     <Grid DataContext="{StaticResource StudentInfo}">
@@ -29,15 +31,16 @@
         </Grid.ColumnDefinitions>
        
         <StackPanel>
-            <TextBlock Margin="50" Height="40" FontWeight="Black"  FontSize="20"   FontFamily="Arial Narrow" Text="{Binding Source={StaticResource StudentInfo},Path=StuId}"></TextBlock>
-            <TextBlock Margin="50" Height="40" FontWeight="Black"  FontSize="20"   FontFamily="Arial Narrow" Text="{Binding Path=Age}" ></TextBlock>
+            <TextBlock Margin="50" Height="40" FontWeight="Black"   FontSize="20"  Foreground="Orange"  FontFamily="Arial Narrow" Text="{Binding Source={StaticResource StudentInfo},Path=StuId}"></TextBlock>
+            <TextBlock Margin="50" Height="40" FontWeight="Black"  FontSize="20"  Foreground="Orange"   FontFamily="Arial Narrow" Text="{Binding Path=Age}" ></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1">
             <ScrollViewer BorderBrush="Green" Height="450" FontFamily="宋体" FontWeight="Black"  FontSize="12">
-                <ListView x:Name="StuListView" FontFamily="宋体" FontWeight="Black"  FontSize="12">
+                <ListView x:Name="StuListView" FontFamily="宋体" FontWeight="Black" Foreground="Black" FontSize="12" >
                     <ListView.View>
                         <GridView >
-                            <GridViewColumn Header="序号" DisplayMemberBinding="{Binding StudentID}"></GridViewColumn>
+                            <GridViewColumn  Header="序号" DisplayMemberBinding="{Binding StudentID}">
+                            </GridViewColumn>
                             <GridViewColumn Header="年龄" DisplayMemberBinding="{Binding Age}"></GridViewColumn>
                             <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Sex}"></GridViewColumn>
                             <GridViewColumn Header="生日" DisplayMemberBinding="{Binding Birthday}"></GridViewColumn>
@@ -54,7 +57,10 @@
         <Border Grid.Column="3">
             <StackPanel>
                 <TextBlock Text="展示ListView数据"/>
-                <Button Height="40" Click="Button_Click"></Button>
+                <Button Height="40" Click="Button_Click" Content="ListView"></Button>
+                <TextBlock Text="展示ListBox数据"/>
+                <Button Height="40" Click="Button_Click_1"  Content="ListBox"></Button>
+                <Button Grid.Row="2" Content="学生管理" Click="Students_Click" HorizontalAlignment="Left" Margin="0,8" Panel.ZIndex="10"/>
             </StackPanel>
         </Border>
     </Grid>
