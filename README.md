@@ -111,3 +111,5 @@ powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File tools/VerifyFlip.ps
 ```
 
 结果见 `artifacts/flip-verification-results.txt`；正面、背面和翻转中截图分别为 `artifacts/flip-front-preview.png`、`artifacts/flip-back-preview.png`、`artifacts/flip-midpoint-preview.png`。
+#   B a c k g r o u n d C h a n g e d  
+ 

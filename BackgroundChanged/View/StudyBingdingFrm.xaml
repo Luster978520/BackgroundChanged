@@ -33,10 +33,10 @@
             <TextBlock Margin="50" Height="40" FontWeight="Black"  FontSize="20"   FontFamily="Arial Narrow" Text="{Binding Path=Age}" ></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1">
-            <ScrollViewer BorderBrush="Pink" Height="450" >
-                <ListView x:Name="StuListView">
+            <ScrollViewer BorderBrush="Green" Height="450" FontFamily="宋体" FontWeight="Black"  FontSize="12">
+                <ListView x:Name="StuListView" FontFamily="宋体" FontWeight="Black"  FontSize="12">
                     <ListView.View>
-                        <GridView>
+                        <GridView >
                             <GridViewColumn Header="序号" DisplayMemberBinding="{Binding StudentID}"></GridViewColumn>
                             <GridViewColumn Header="年龄" DisplayMemberBinding="{Binding Age}"></GridViewColumn>
                             <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Sex}"></GridViewColumn>
