@@ -1,0 +1,71 @@
+<UserControl x:Class="BackgroundChanged.Controls.DayNightSwitch"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:BackgroundChanged.Controls"
+             Focusable="False">
+    <Viewbox Stretch="Uniform">
+        <ToggleButton x:Name="Switch" Width="380" Height="188" Cursor="Hand"
+                      IsChecked="{Binding IsNight, RelativeSource={RelativeSource AncestorType={x:Type local:DayNightSwitch}}, Mode=TwoWay}"
+                      AutomationProperties.Name="切换日间与夜间主题" ToolTip="切换昼夜 · 也可使用空格键">
+            <ToggleButton.Template>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid x:Name="ButtonRoot" RenderTransformOrigin="0.5,0.5">
+                        <Grid.RenderTransform><ScaleTransform x:Name="PressScale"/></Grid.RenderTransform>
+                        <Border CornerRadius="94" Background="#476C91" Margin="2">
+                            <Border.Effect><DropShadowEffect Color="#182B48" Opacity="0.22" BlurRadius="30" ShadowDepth="12"/></Border.Effect>
+                        </Border>
+                        <Grid Margin="4">
+                            <Grid.Clip><RectangleGeometry Rect="0,0,372,180" RadiusX="90" RadiusY="90"/></Grid.Clip>
+                            <Border Background="#75B9E8"/>
+                            <Border x:Name="NightSky" Background="#202E52" Opacity="0"/>
+                            <Ellipse Width="310" Height="310" Fill="#147FFFFF" HorizontalAlignment="Left" Margin="-65,-65,0,0"/>
+                            <Ellipse Width="250" Height="250" Fill="#207FFFFF" HorizontalAlignment="Left" Margin="-35,-35,0,0"/>
+                            <Ellipse Width="192" Height="192" Fill="#267FFFFF" HorizontalAlignment="Left" Margin="-6,-6,0,0"/>
+                            <Canvas x:Name="Stars" Opacity="0">
+                                <Path Fill="#E4EDFF" Data="M65,32 L68,39 75,42 68,45 65,52 62,45 55,42 62,39 Z"/>
+                                <Path Fill="#D4E5FF" Data="M141,80 L143,85 148,87 143,89 141,94 139,89 134,87 139,85 Z"/>
+                                <Path Fill="#E4EDFF" Data="M116,22 L118,27 123,29 118,31 116,36 114,31 109,29 114,27 Z"/>
+                                <Ellipse Width="4" Height="4" Fill="#C9DFFF" Canvas.Left="39" Canvas.Top="100"/>
+                                <Ellipse Width="3" Height="3" Fill="#C9DFFF" Canvas.Left="176" Canvas.Top="48"/>
+                                <Ellipse Width="4" Height="4" Fill="#C9DFFF" Canvas.Left="92" Canvas.Top="119"/>
+                                <Ellipse Width="3" Height="3" Fill="#C9DFFF" Canvas.Left="190" Canvas.Top="130"/>
+                            </Canvas>
+                            <Canvas x:Name="Clouds">
+                                <Path Fill="#A7D5EF" Data="M110,180 L110,145 C110,123 133,112 152,119 C152,90 185,78 206,96 C216,63 254,58 277,83 C301,64 329,78 331,101 C359,90 380,109 390,135 L390,180 Z"/>
+                                <Path Fill="#DAEFF8" Data="M156,180 C147,155 171,133 195,141 C201,114 234,108 250,130 C268,101 307,103 323,128 C348,111 379,127 386,148 L386,180 Z"/>
+                            </Canvas>
+                            <Border Width="148" Height="148" CornerRadius="74" HorizontalAlignment="Left" Margin="16,0,0,0">
+                                <Border.RenderTransform><TranslateTransform x:Name="KnobTranslation"/></Border.RenderTransform>
+                                <Border.Effect><DropShadowEffect BlurRadius="12" ShadowDepth="5" Opacity="0.3" Color="#17263B"/></Border.Effect>
+                                <Grid RenderTransformOrigin="0.5,0.5">
+                                    <Grid.RenderTransform><RotateTransform x:Name="KnobRotation"/></Grid.RenderTransform>
+                                    <Grid x:Name="Sun">
+                                    <Ellipse Stroke="#FFF0A3" StrokeThickness="3">
+                                        <Ellipse.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#FFE681"/><GradientStop Color="#F8BE46" Offset="1"/></LinearGradientBrush></Ellipse.Fill>
+                                    </Ellipse>
+                                    <Path Data="M27,58 A51,51 0 0 1 66,24" Stroke="#80FFF6CF" StrokeThickness="4" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                                    </Grid>
+                                    <Grid x:Name="Moon" Opacity="0" RenderTransformOrigin="0.5,0.5">
+                                        <!-- Counter-orient the artwork so the moon settles in its original pose. -->
+                                        <Grid.RenderTransform><RotateTransform x:Name="MoonOrientation"/></Grid.RenderTransform>
+                                        <Ellipse Fill="#DDE7F0" Stroke="#F1F7FF" StrokeThickness="3"/>
+                                        <Ellipse Width="34" Height="34" Fill="#B4C7D8" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,36,0,0"/>
+                                        <Ellipse Width="22" Height="22" Fill="#B4C7D8" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,78,25,0"/>
+                                        <Ellipse Width="14" Height="14" Fill="#C2D2E0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="42,0,0,28"/>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        <Border CornerRadius="94" BorderThickness="2" BorderBrush="#7FFFFFFF" IsHitTestVisible="False"/>
+                        <Border x:Name="FocusRing" CornerRadius="100" Margin="-6" BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}" Opacity="0" IsHitTestVisible="False"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="FocusRing" Property="Opacity" Value="0.9"/></Trigger>
+                        <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="FocusRing" Property="Opacity" Value="0.35"/></Trigger>
+                        <Trigger Property="IsPressed" Value="True"><Setter TargetName="ButtonRoot" Property="RenderTransform"><Setter.Value><ScaleTransform ScaleX="0.97" ScaleY="0.97"/></Setter.Value></Setter></Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </ToggleButton.Template>
+        </ToggleButton>
+    </Viewbox>
+</UserControl>

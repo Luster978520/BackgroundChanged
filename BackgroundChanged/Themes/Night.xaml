@@ -1,0 +1,16 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="ForegroundBrush" Color="#EFF3FF"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="#ADBBD4"/>
+    <SolidColorBrush x:Key="SurfaceBrush" Color="#1C2942"/>
+    <SolidColorBrush x:Key="SoftSurfaceBrush" Color="#A6273652"/>
+    <SolidColorBrush x:Key="BorderBrush" Color="#40B5C9E9"/>
+    <SolidColorBrush x:Key="AccentBrush" Color="#A2C7F2"/>
+    <SolidColorBrush x:Key="HoverBrush" Color="#25A2C7F2"/>
+    <SolidColorBrush x:Key="InputBrush" Color="#263751"/>
+    <SolidColorBrush x:Key="OverlayBrush" Color="#0B142A"/>
+    <LinearGradientBrush x:Key="GlassPanelBrush" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#424F7195" Offset="0"/><GradientStop Color="#303E577D" Offset="0.5"/><GradientStop Color="#55466083" Offset="1"/></LinearGradientBrush>
+    <SolidColorBrush x:Key="GlassEdgeBrush" Color="#50D9ECFF"/>
+    <LinearGradientBrush x:Key="GlassCardBrush" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#28E5F3FF"/><GradientStop Color="#0CE5F3FF" Offset="1"/></LinearGradientBrush>
+    <SolidColorBrush x:Key="GlassHoverBrush" Color="#465F83AE"/>
+</ResourceDictionary>
+

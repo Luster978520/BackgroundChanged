@@ -1,0 +1,83 @@
+<Window x:Class="BackgroundChanged.View.FlipPanelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:custom="clr-namespace:WpfCustomControlLibrary1;assembly=WpfCustomControlLibrary1"
+        Title="FlipPanel · 3D 翻转面板" Width="900" Height="740" MinWidth="680" MinHeight="660"
+        WindowStartupLocation="CenterOwner" FontFamily="Microsoft YaHei UI, Segoe UI"
+        Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource ForegroundBrush}">
+    <Grid Background="{DynamicResource SurfaceBrush}">
+    <Grid Margin="32,26">
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock Text="控 件 实 验 室   /   01" FontSize="10" Foreground="{DynamicResource SecondaryBrush}"/>
+            <TextBlock Text="一张卡片，两面精彩。" FontSize="28" FontWeight="SemiBold" Margin="0,9,0,8"/>
+            <TextBlock Text="FlipPanel · 透视 3D 翻转" FontSize="13" Foreground="{DynamicResource SecondaryBrush}"/>
+        </StackPanel>
+        <Grid Grid.Row="1" Margin="0,12">
+            <Ellipse Width="410" Height="80" VerticalAlignment="Bottom" Margin="0,0,0,8" Fill="{DynamicResource HoverBrush}">
+                <Ellipse.Effect><BlurEffect Radius="20"/></Ellipse.Effect>
+            </Ellipse>
+            <custom:FlipPanel x:Name="DemoPanel" Width="500" Height="320" AnimationDuration="{Binding Value, ElementName=SpeedSlider}"
+                              Background="Transparent" BorderThickness="0" Radius="26" AutomationProperties.Name="3D 翻转卡片">
+                <custom:FlipPanel.FrontContent>
+                    <Border CornerRadius="26" BorderBrush="#80FFFFFF" BorderThickness="1" Padding="30">
+                        <Border.Background><LinearGradientBrush StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#5779BD"/><GradientStop Color="#344C8E" Offset="0.55"/><GradientStop Color="#6E58A4" Offset="1"/></LinearGradientBrush></Border.Background>
+                        <Grid>
+                            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                            <Grid><TextBlock Text="D A Y L I G H T   /   正面" Foreground="#C9D8FF" FontSize="11"/><TextBlock Text="01 / 02" Foreground="#C9D8FF" FontSize="11" HorizontalAlignment="Right"/></Grid>
+                            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                                <TextBlock Text="换个角度，" Foreground="White" FontSize="34" FontWeight="Light"/>
+                                <TextBlock Text="发现另一面。" Foreground="White" FontSize="34" FontWeight="SemiBold" Margin="0,3,0,10"/>
+                                <TextBlock Text="真实透视 · 双面内容 · 自然翻转" Foreground="#D1DBF4" FontSize="12"/>
+                            </StackPanel>
+                            <Button x:Name="FrontFlipButton" Grid.Row="2" Command="{x:Static custom:FlipPanel.FlipCommand}"
+                                    CommandTarget="{Binding ElementName=DemoPanel}" HorizontalAlignment="Left" Foreground="White" Background="#25FFFFFF" BorderBrush="#60FFFFFF">
+                                <TextBlock Text="探索背面  →" Foreground="White"/>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </custom:FlipPanel.FrontContent>
+                <custom:FlipPanel.BackContent>
+                    <Border CornerRadius="26" BorderBrush="#80FFFFFF" BorderThickness="1" Padding="30">
+                        <Border.Background><LinearGradientBrush StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#277F91"/><GradientStop Color="#256272" Offset="0.6"/><GradientStop Color="#325377" Offset="1"/></LinearGradientBrush></Border.Background>
+                        <Grid>
+                            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                            <Grid><TextBlock Text="A N O T H E R   S I D E   /   背面" Foreground="#C3F0EA" FontSize="11"/><TextBlock Text="02 / 02" Foreground="#C3F0EA" FontSize="11" HorizontalAlignment="Right"/></Grid>
+                            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                                <TextBlock Text="你好，另一面。" Foreground="White" FontSize="30" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                                <TextBlock Text="这里也可以放表单、图片和操作按钮。" Foreground="#D2EAEF" FontSize="12" Margin="0,0,0,12"/>
+                                <TextBox x:Name="BackNote" Text="在背面写下一点灵感…" FontSize="13" Padding="10"/>
+                            </StackPanel>
+                            <Button x:Name="BackFlipButton" Grid.Row="2" Command="{x:Static custom:FlipPanel.FlipCommand}"
+                                    CommandTarget="{Binding ElementName=DemoPanel}" HorizontalAlignment="Left" Foreground="White" Background="#25FFFFFF" BorderBrush="#60FFFFFF">
+                                <TextBlock Text="←  返回正面" Foreground="White"/>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </custom:FlipPanel.BackContent>
+            </custom:FlipPanel>
+        </Grid>
+        <Border Grid.Row="2" CornerRadius="20" Background="{DynamicResource SoftSurfaceBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Padding="20,16">
+            <StackPanel>
+                <Grid Margin="0,0,0,14">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="12" VerticalAlignment="Center">
+                            <TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Text" Value="当前目标：正面"/><Style.Triggers><DataTrigger Binding="{Binding IsFlipped, ElementName=DemoPanel}" Value="True"><Setter Property="Text" Value="当前目标：背面"/></DataTrigger></Style.Triggers></Style></TextBlock.Style>
+                        </TextBlock>
+                        <TextBlock Text="  ·  翻转中" FontSize="12" Foreground="{DynamicResource SecondaryBrush}" VerticalAlignment="Center"
+                                   Visibility="{Binding IsAnimating, ElementName=DemoPanel, Converter={StaticResource BooleanVisibility}}"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding Value, ElementName=SpeedSlider, StringFormat=动画时长：{0:0} ms}" HorizontalAlignment="Right" FontSize="12" Foreground="{DynamicResource SecondaryBrush}"/>
+                </Grid>
+                <Slider x:Name="SpeedSlider" Minimum="200" Maximum="1600" Value="650" TickFrequency="50" IsSnapToTickEnabled="True" AutomationProperties.Name="翻转动画时长" Margin="0,0,0,16"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="FlipButton" Content="翻转卡片" Command="{x:Static custom:FlipPanel.FlipCommand}" CommandTarget="{Binding ElementName=DemoPanel}" MinWidth="115"/>
+                    <Button x:Name="ShowFrontButton" Content="显示正面" Click="ShowFront_Click" Margin="10,0,0,0"/>
+                    <Button x:Name="ShowBackButton" Content="显示背面" Click="ShowBack_Click" Margin="10,0,0,0"/>
+                </StackPanel>
+                <TextBlock Text="聚焦卡片后按空格 / Enter 翻转；连续点击可在途中反向。" FontSize="11" Foreground="{DynamicResource SecondaryBrush}" HorizontalAlignment="Center" Margin="0,13,0,0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+    </Grid>
+</Window>

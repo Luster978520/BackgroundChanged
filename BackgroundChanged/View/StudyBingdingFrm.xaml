@@ -1,0 +1,61 @@
+﻿<Window x:Class="BackgroundChanged.View.StudyBingdingFrm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BackgroundChanged.View"
+        xmlns:model="clr-namespace:BackgroundChanged.Models"
+        mc:Ignorable="d"
+        Title="StudyBingdingFrm" Height="450" Width="800">
+    <Window.Resources>
+        <model:StudentInfo x:Key="StudentInfo" StuId="001" Name="张三" Age="12"></model:StudentInfo>
+        <!--<model:ClassStuInfo x:Key="classStuInfo">
+            <model:ClassStuInfo.StuList>
+                <model:StuInfo Age="18" Name="张三" Description="1231"></model:StuInfo>
+                <model:StuInfo Age="18" Name="张三" Description="1231"></model:StuInfo>
+                <model:StuInfo Age="18" Name="张三" Description="1231"></model:StuInfo>
+                <model:StuInfo Age="18" Name="张三" Description="1231"></model:StuInfo>
+            </model:ClassStuInfo.StuList>
+        </model:ClassStuInfo>-->
+       
+    </Window.Resources>
+
+    <Grid DataContext="{StaticResource StudentInfo}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+       
+        <StackPanel>
+            <TextBlock Margin="50" Height="40" FontWeight="Black"  FontSize="20"   FontFamily="Arial Narrow" Text="{Binding Source={StaticResource StudentInfo},Path=StuId}"></TextBlock>
+            <TextBlock Margin="50" Height="40" FontWeight="Black"  FontSize="20"   FontFamily="Arial Narrow" Text="{Binding Path=Age}" ></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <ScrollViewer BorderBrush="Pink" Height="450" >
+                <ListView x:Name="StuListView">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="序号" DisplayMemberBinding="{Binding StudentID}"></GridViewColumn>
+                            <GridViewColumn Header="年龄" DisplayMemberBinding="{Binding Age}"></GridViewColumn>
+                            <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Sex}"></GridViewColumn>
+                            <GridViewColumn Header="生日" DisplayMemberBinding="{Binding Birthday}"></GridViewColumn>
+                            <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding StudentName}"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </ScrollViewer>
+        </StackPanel >
+        <Border Grid.Column="2"  Height="100" >
+            <TextBlock Height="40" Width="100"  Foreground="Orange"
+                       Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Border},Path=Height}"></TextBlock>
+        </Border>
+        <Border Grid.Column="3">
+            <StackPanel>
+                <TextBlock Text="展示ListView数据"/>
+                <Button Height="40" Click="Button_Click"></Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

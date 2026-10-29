@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="BackgroundChanged.Controls.ColorPickerUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BackgroundChanged.Controls"
+             mc:Ignorable="d" 
+             x:Name="colorPicker"
+             d:DesignHeight="250" d:DesignWidth="380">
+    <Grid Background="MistyRose">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Slider x:Name="sliderRed" Grid.Row="0" Grid.Column="0" Width="200" Height="30" Background="red" Opacity="0.5" 
+                Margin="{Binding ElementName=colorPicker, Path=Padding}" 
+                Value="{Binding ElementName=colorPicker, Path=Red, Mode=TwoWay}"
+                Minimum="0" Maximum="255" ></Slider>
+
+        <Slider x:Name="sliderGreen" Grid.Row="1" Grid.Column="0" Width="200" Height="30" Background="Green" Opacity="0.5" 
+         Margin="{Binding ElementName=colorPicker, Path=Padding}" 
+               Value="{Binding ElementName=colorPicker, Path=Green, Mode=TwoWay}"
+                Minimum="0" Maximum="255" ></Slider>
+
+        <Slider x:Name="sliderBlue" Grid.Row="2" Grid.Column="0" Width="200" Height="30" Background="Blue" Opacity="0.5" 
+         Margin="{Binding ElementName=colorPicker, Path=Padding}" 
+                Value="{Binding ElementName=colorPicker, Path=Blue, Mode=TwoWay}"
+                Minimum="0" Maximum="255" ></Slider>
+
+
+       
+        
+        <Rectangle Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Width="150" Height="200" Margin="10 10 10 10">
+            <Rectangle.Fill>
+                <SolidColorBrush  Color="{Binding ElementName=colorPicker, Path=MyColor,Mode=TwoWay}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        
+        
+    </Grid>
+</UserControl>

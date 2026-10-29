@@ -1,0 +1,30 @@
+﻿<Window x:Class="BackgroundChanged.View.ListViewShowTableFrm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BackgroundChanged.View"
+        mc:Ignorable="d"
+        Title="ListViewShowTableFrm" Height="450" Width="800">
+    <Grid>
+        <StackPanel Height="200">
+            <TextBlock  Height="20" Text="{Binding ClassName }"></TextBlock>
+            <ListView  ItemsSource="{Binding StuList}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Name }"/>
+                        <GridViewColumn Header="年龄" DisplayMemberBinding="{Binding Age }"/>
+                        <GridViewColumn Header="描述" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Description}"></TextBox>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+
+    </Grid>
+</Window>
